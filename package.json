@@ -15,7 +15,7 @@
     "lint": "eslint .",
     "coverage": "istanbul cover server/app/index.test.js",
     "build": "webpack",
-    "start-dev": "webpack-dev-server --port 8080 --config webpack.development.js --content-base .build --progress --colors",
+    "start-dev": "webpack-dev-server --port 8080 --config webpack.development.js --content-base .build --progress --colors"
 
   },
   "repository": {
