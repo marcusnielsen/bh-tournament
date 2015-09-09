@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html{% if(o.htmlWebpackPlugin.files.manifest) { %} manifest="{%= o.htmlWebpackPlugin.files.manifest %}"{% } %}>
+<head>
+  <meta charset="UTF-8">
+  <!-- TODO: Bind to the Route's title -->
+  <title>Title</title>
+  {% for (var css in o.htmlWebpackPlugin.files.css) { %}
+  <link href="{%=o.htmlWebpackPlugin.files.css[css] %}" rel="stylesheet">
+  {% } %}
+</head>
+<body>
+  <div>
+    <ui-view></ui-view>
+  </div>
+
+  {% for (var chunk in o.htmlWebpackPlugin.files.chunks) { %}
+  <script src="{%=o.htmlWebpackPlugin.files.chunks[chunk].entry %}"></script>
+  {% } %}
+</body>
+</html>
