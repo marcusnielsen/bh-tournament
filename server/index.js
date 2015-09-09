@@ -1,0 +1,9 @@
+'use strict';
+
+var config = require('./config');
+var app = require('./app');
+
+var server = app.listen(config.PORT, config.HOSTNAME, function onServer() {
+  var serverAddress = server.address();
+  process.stdout.write('Server started on: ' + serverAddress.address + ':' + serverAddress.port + '\n\n');
+});

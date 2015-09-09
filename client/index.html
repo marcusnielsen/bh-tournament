@@ -10,11 +10,15 @@
   {% } %}
 </head>
 <body>
-  <div>
-    <ui-view></ui-view>
+<div data-drag-target="dragTarget">Drag Me!</div>
+<div class="container-fluid">
+  <div class="page-header">
+    <h1>RxJS  Drag and Drop Example</h1>
+    <p class="lead">Example to show coordinating events to perform drag and drop</p>
   </div>
+</div>
 
-  {% for (var chunk in o.htmlWebpackPlugin.files.chunks) { %}
+{% for (var chunk in o.htmlWebpackPlugin.files.chunks) { %}
   <script src="{%=o.htmlWebpackPlugin.files.chunks[chunk].entry %}"></script>
   {% } %}
 </body>
