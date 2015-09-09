@@ -2,4 +2,3 @@
 
 require('./styles/main.scss');
 
-alert('js works well');
