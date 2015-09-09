@@ -1,6 +1,7 @@
 'use strict';
 
 var config = require('./config');
+require('./bookshelf');
 var app = require('./app');
 
 var server = app.listen(config.PORT, config.HOSTNAME, function onServer() {
