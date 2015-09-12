@@ -8,16 +8,23 @@ require('./paypal')(config);
 var app = require('./app');
 var server = require('http').createServer(app);
 var io = require('socket.io')(server);
+var Rx = require('rx');
+
+var tournaments = [];
 
 io.on('connection', function(socket){
   io.emit('event', 'A user connected');
+
+  Rx.Observable.fromArray(tournaments).subscribe(function (tournament) {
+    io.emit('tournament.create', tournament);
+  });
 
   socket.on('disconnect', function(){
     io.emit('event', 'A user disconnected');
   });
 
   socket.on('tournament.create', function (data) {
-    console.log('data: ', data);
+    tournaments.push(data);
     io.emit('tournament.create', data);
   });
 });
