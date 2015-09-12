@@ -1,10 +1,17 @@
 'use strict';
 
 require('./styles/main.scss');
-var Rx = require('rx');
 
-(function main() {
-  var dragTarget = document.querySelectorAll('[data-drag-target]')[0];
+var Rx = require('rx');
+var React = require('react');
+
+React.render(
+<h1>Hello, world!</h1>,
+  document.querySelectorAll('[data-react-init]')[0]
+);
+/*
+ (function main() {
+ var dragTarget = document.querySelectorAll('[data-drag-target]')[0];
 
   // Get the three major events
   var mouseup = Rx.Observable.fromEvent(dragTarget, 'mouseup');
@@ -33,3 +40,4 @@ var Rx = require('rx');
     dragTarget.style.left = pos.left + 'px';
   });
 }());
+*/

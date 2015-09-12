@@ -55,6 +55,7 @@
     "passport-jwt": "^1.1.1",
     "paypal-rest-sdk": "^1.6.1",
     "pg": "^4.4.1",
+    "react": "^0.13.3",
     "rx": "^3.1.2",
     "sass-loader": "^1.0.2",
     "style-loader": "^0.12.3",
