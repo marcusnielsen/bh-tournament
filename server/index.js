@@ -19,7 +19,7 @@ io.on('connection', function(socket){
 
 server.listen(config.PORT, function onServer() {
   var serverAddress = server.address();
-  process.stdout.write('Server started on: ' + serverAddress.address + ':' + serverAddress.port + '\n\n');
+  process.stdout.write('Server started on port' + serverAddress.port + '\n\n');
 });
 
 var id = 1;

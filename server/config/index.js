@@ -9,6 +9,6 @@ require('dotenv').load();
 // Leaking should be OK for local dev mode.
 var config = process.env;
 
-config.SERVER_BASE_URL = config.PROTOCOL + '://' + config.HOSTNAME + ':' + config.PORT;
+config.SERVER_BASE_URL = config.PROTOCOL + '://' + config.HOSTNAME + ':' + config.EXTERNAL_PORT;
 
 module.exports = config;

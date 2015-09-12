@@ -6,7 +6,6 @@
   "scripts": {
     "env": "node bin/setup-env.js",
     "test": "npm run lint && tape 'server/**/*.test.js' | faucet",
-    "postinstall": "npm run build",
     "start": "node server",
     "start-debug": "iron-node server",
     "watch:app": "nodemon server",
