@@ -54,7 +54,7 @@
 /******/ 	
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "8782699936d4a97220bd"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "cffe46c9cedb04b6a66e"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -554,7 +554,7 @@
 /* 1 */
 /***/ function(module, exports, __webpack_require__) {
 
-	eval("'use strict';\n\n__webpack_require__(2);\nvar Rx = __webpack_require__(4);\nvar React = __webpack_require__(7);\n\nvar Tournaments = __webpack_require__(179);\nvar io = __webpack_require__(183);\n\nvar socket = io();\n\nsocket.on('connect', function () {\n  console.log('connected');\n});\n\nsocket.on('event', function (data) {\n  console.log(data);\n});\n\nsocket.on('disconnect', function () {\n  console.log('disconnected');\n});\n\nReact.render(React.createElement(Tournaments, null), document.querySelectorAll('[data-react-init]')[0]);\n\n/*****************\n ** WEBPACK FOOTER\n ** ./client/index.js\n ** module id = 1\n ** module chunks = 0\n **/\n//# sourceURL=webpack:///./client/index.js?");
+	eval("'use strict';\n\n__webpack_require__(2);\nvar Rx = __webpack_require__(4);\nvar React = __webpack_require__(7);\n\nvar Tournaments = __webpack_require__(179);\nvar socket = __webpack_require__(182);\n\nsocket.on('connect', function () {\n  console.log('connected');\n});\n\nsocket.on('event', function (data) {\n  console.log(data);\n});\n\nsocket.on('disconnect', function () {\n  console.log('disconnected');\n});\n\nReact.render(React.createElement(Tournaments, null), document.querySelector('[data-react-init]'));\n\n/*****************\n ** WEBPACK FOOTER\n ** ./client/index.js\n ** module id = 1\n ** module chunks = 0\n **/\n//# sourceURL=webpack:///./client/index.js?");
 
 /***/ },
 /* 2 */
@@ -1617,25 +1617,25 @@
 /* 179 */
 /***/ function(module, exports, __webpack_require__) {
 
-	eval("'use strict';\n\nvar React = __webpack_require__(7);\nvar CreateItem = __webpack_require__(180);\nvar ListItems = __webpack_require__(181);\n\nmodule.exports = React.createClass({\n  displayName: 'exports',\n\n  render: function render() {\n    return React.createElement(\n      'div',\n      null,\n      React.createElement(CreateItem, null),\n      React.createElement(ListItems, null)\n    );\n  }\n});\n\n/*****************\n ** WEBPACK FOOTER\n ** ./client/components/tournaments/index.js\n ** module id = 179\n ** module chunks = 0\n **/\n//# sourceURL=webpack:///./client/components/tournaments/index.js?");
+	eval("'use strict';\n\nvar React = __webpack_require__(7);\nvar CreateTournament = __webpack_require__(180);\nvar Tournaments = __webpack_require__(181);\nvar socket = __webpack_require__(182);\n\nmodule.exports = React.createClass({\n  displayName: 'exports',\n\n  getInitialState: function getInitialState() {\n    return { tournaments: [{ id: 0, name: 'empty' }] };\n  },\n  componentDidMount: function componentDidMount() {\n    var _this = this;\n\n    observeTournamentCreate().subscribe(function (tournament) {\n      // TODO: Eeeks, do immutable!\n      _this.setState({ tournaments: _this.state.tournaments.concat([tournament]) });\n    });\n  },\n  render: function render() {\n    return React.createElement(\n      'div',\n      null,\n      React.createElement(CreateTournament, null),\n      React.createElement(Tournaments, { tournaments: this.state.tournaments })\n    );\n  }\n});\n\nfunction observeTournamentCreate() {\n  return Rx.Observable.create(function (observable) {\n    socket.on('tournament.create', function (data) {\n      observable.onNext(data);\n    });\n\n    return function () {\n      socket.removeAllListeners('tournament.create');\n    };\n  });\n}\n\n/*****************\n ** WEBPACK FOOTER\n ** ./client/components/tournaments/index.js\n ** module id = 179\n ** module chunks = 0\n **/\n//# sourceURL=webpack:///./client/components/tournaments/index.js?");
 
 /***/ },
 /* 180 */
 /***/ function(module, exports, __webpack_require__) {
 
-	eval("\"use strict\";\n\nvar React = __webpack_require__(7);\n\nmodule.exports = React.createClass({\n  displayName: \"exports\",\n\n  render: function render() {\n    return React.createElement(\n      \"div\",\n      null,\n      React.createElement(\n        \"h3\",\n        null,\n        \"Create tournament\"\n      ),\n      React.createElement(\n        \"div\",\n        { className: \"row\" },\n        React.createElement(\n          \"div\",\n          { className: \"col-xs-8\" },\n          React.createElement(\"input\", { type: \"text\", className: \"form-control\" })\n        ),\n        React.createElement(\n          \"div\",\n          { className: \"col-xs-4\" },\n          React.createElement(\n            \"button\",\n            { className: \"btn btn-success\" },\n            \"Create\"\n          )\n        )\n      )\n    );\n  }\n});\n\n/*****************\n ** WEBPACK FOOTER\n ** ./client/components/tournaments/create-item.js\n ** module id = 180\n ** module chunks = 0\n **/\n//# sourceURL=webpack:///./client/components/tournaments/create-item.js?");
+	eval("\"use strict\";\n\nvar React = __webpack_require__(7);\n\nmodule.exports = React.createClass({\n  displayName: \"exports\",\n\n  render: function render() {\n    return React.createElement(\n      \"div\",\n      null,\n      React.createElement(\n        \"h3\",\n        null,\n        \"Create tournament\"\n      ),\n      React.createElement(\n        \"div\",\n        { className: \"row\" },\n        React.createElement(\n          \"div\",\n          { className: \"col-xs-8\" },\n          React.createElement(\"input\", { type: \"text\", className: \"form-control\" })\n        ),\n        React.createElement(\n          \"div\",\n          { className: \"col-xs-4\" },\n          React.createElement(\n            \"button\",\n            { className: \"btn btn-success\" },\n            \"Create\"\n          )\n        )\n      )\n    );\n  }\n});\n\n/*****************\n ** WEBPACK FOOTER\n ** ./client/components/tournaments/create-tournament.js\n ** module id = 180\n ** module chunks = 0\n **/\n//# sourceURL=webpack:///./client/components/tournaments/create-tournament.js?");
 
 /***/ },
 /* 181 */
 /***/ function(module, exports, __webpack_require__) {
 
-	eval("'use strict';\n\nvar React = __webpack_require__(7);\nvar ShowItem = __webpack_require__(182);\n\nmodule.exports = React.createClass({\n  displayName: 'exports',\n\n  render: function render() {\n    return React.createElement(\n      'div',\n      null,\n      React.createElement(\n        'ul',\n        null,\n        React.createElement(\n          'li',\n          null,\n          React.createElement(ShowItem, null)\n        )\n      )\n    );\n  }\n});\n\n/*****************\n ** WEBPACK FOOTER\n ** ./client/components/tournaments/list-items.js\n ** module id = 181\n ** module chunks = 0\n **/\n//# sourceURL=webpack:///./client/components/tournaments/list-items.js?");
+	eval("'use strict';\n\nvar React = __webpack_require__(7);\nvar Rx = __webpack_require__(4);\n\nmodule.exports = React.createClass({\n  displayName: 'exports',\n\n  render: function render() {\n    return React.createElement(\n      'div',\n      null,\n      React.createElement(\n        'div',\n        { className: 'row' },\n        this.props.tournaments.map(function (tournament) {\n          return React.createElement(\n            'div',\n            { key: tournament.id },\n            React.createElement(\n              'div',\n              { className: 'col-xs-12' },\n              React.createElement(\n                'span',\n                null,\n                tournament.name\n              ),\n              ' - ',\n              React.createElement(\n                'span',\n                null,\n                tournament.id\n              )\n            )\n          );\n        })\n      )\n    );\n  }\n});\n\n/*****************\n ** WEBPACK FOOTER\n ** ./client/components/tournaments/tournaments.js\n ** module id = 181\n ** module chunks = 0\n **/\n//# sourceURL=webpack:///./client/components/tournaments/tournaments.js?");
 
 /***/ },
 /* 182 */
 /***/ function(module, exports, __webpack_require__) {
 
-	eval("'use strict';\n\nvar React = __webpack_require__(7);\n\nmodule.exports = React.createClass({\n  displayName: 'exports',\n\n  render: function render() {\n    return React.createElement(\n      'div',\n      null,\n      'TODO: tournament-item'\n    );\n  }\n});\n\n/*****************\n ** WEBPACK FOOTER\n ** ./client/components/tournaments/show-item.js\n ** module id = 182\n ** module chunks = 0\n **/\n//# sourceURL=webpack:///./client/components/tournaments/show-item.js?");
+	eval("'use strict';\n\nvar io = __webpack_require__(183);\nmodule.exports = io();\n\n/*****************\n ** WEBPACK FOOTER\n ** ./client/socket/index.js\n ** module id = 182\n ** module chunks = 0\n **/\n//# sourceURL=webpack:///./client/socket/index.js?");
 
 /***/ },
 /* 183 */

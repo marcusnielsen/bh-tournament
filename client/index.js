@@ -21,5 +21,5 @@ socket.on('disconnect', function(){
 
 React.render(
 <Tournaments />,
-  document.querySelectorAll('[data-react-init]')[0]
+  document.querySelector('[data-react-init]')
 );

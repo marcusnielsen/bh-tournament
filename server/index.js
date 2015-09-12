@@ -19,11 +19,11 @@ io.on('connection', function(socket){
 
 server.listen(config.PORT, function onServer() {
   var serverAddress = server.address();
-  process.stdout.write('Server started on port' + serverAddress.port + '\n\n');
+  process.stdout.write('Server started on port ' + serverAddress.port + '\n\n');
 });
 
 var id = 1;
 
 setInterval(function() {
-  io.emit('tournament.create', {tournamentId: id++, key: 'name', value: 'tournament' + id});
+  io.emit('tournament.create', {id: id, name: 'tournament' + id++});
 }, 1000);
