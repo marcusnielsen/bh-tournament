@@ -17,7 +17,7 @@ io.on('connection', function(socket){
   });
 });
 
-server.listen(config.PORT, config.HOSTNAME, function onServer() {
+server.listen(config.PORT, function onServer() {
   var serverAddress = server.address();
   process.stdout.write('Server started on: ' + serverAddress.address + ':' + serverAddress.port + '\n\n');
 });
