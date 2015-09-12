@@ -22,8 +22,7 @@ server.listen(config.PORT, function onServer() {
   process.stdout.write('Server started on port ' + serverAddress.port + '\n\n');
 });
 
-var id = 1;
-
-setInterval(function() {
-  io.emit('tournament.create', {id: id, name: 'tournament' + id++});
-}, 1000);
+io.on('tournament.create', function (data) {
+  console.log('data: ', data);
+  io.emit('tournament.create', data);
+})

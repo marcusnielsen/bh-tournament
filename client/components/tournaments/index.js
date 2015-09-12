@@ -5,7 +5,7 @@ var socket = require('../../socket');
 
 module.exports = React.createClass({
   getInitialState: function() {
-    return { tournaments: [{id: 0, name: 'empty'}]};
+    return { tournaments: []};
   },
   componentDidMount: function() {
     observeTournamentCreate().subscribe(tournament => {
