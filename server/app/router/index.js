@@ -12,7 +12,7 @@ function init(router) {
 
   return {
     path: '/api',
-    router: router,
+    router: router
   };
 }
 
