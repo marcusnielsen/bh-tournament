@@ -1,10 +1,17 @@
 'use strict';
 
 var express = require('express');
-var loginRouterInfo = require('./login')(express.Router({mergeParams: true}));
+
+var childRouteInits = [
+  require('./login'),
+  require('./tournaments')
+];
 
 function init(router) {
-  router.use(loginRouterInfo.path, loginRouterInfo.router);
+  childRouteInits.forEach(function (childRouteInit) {
+    var childRoute = childRouteInit(express.Router({mergeParams: true}));
+    router.use(childRoute.path, childRoute.router);
+  });
 
   router.get('/', function onGet(req, res) {
     res.send('Hello World!');

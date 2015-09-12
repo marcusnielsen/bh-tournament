@@ -6,7 +6,7 @@ var HtmlWebpackPlugin = require('html-webpack-plugin');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 var entries = [
-  './client/index.jsx'
+  './client/index.js'
 ];
 
 module.exports = {
