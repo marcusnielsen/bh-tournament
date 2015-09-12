@@ -5,7 +5,6 @@ module.exports = React.createClass({
   createTournament: function (event) {
     var tournamentName = React.findDOMNode(this.refs.tournamentName).value.trim();
     socket.emit('tournament.create', {id: tournamentName, name: tournamentName});
-    debugger;
     React.findDOMNode(this.refs.tournamentName).value = '';
   },
   render: function () {

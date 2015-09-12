@@ -15,14 +15,14 @@ io.on('connection', function(socket){
   socket.on('disconnect', function(){
     io.emit('event', 'A user disconnected');
   });
+
+  socket.on('tournament.create', function (data) {
+    console.log('data: ', data);
+    io.emit('tournament.create', data);
+  });
 });
 
 server.listen(config.PORT, function onServer() {
   var serverAddress = server.address();
   process.stdout.write('Server started on port ' + serverAddress.port + '\n\n');
 });
-
-io.on('tournament.create', function (data) {
-  console.log('data: ', data);
-  io.emit('tournament.create', data);
-})

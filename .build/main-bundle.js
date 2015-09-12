@@ -54,7 +54,7 @@
 /******/ 	
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "5a0804bc9aabd5088696"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "8bfd60162a3e51b9196b"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -554,7 +554,7 @@
 /* 1 */
 /***/ function(module, exports, __webpack_require__) {
 
-	eval("'use strict';\n\n__webpack_require__(2);\nvar Rx = __webpack_require__(4);\nvar React = __webpack_require__(7);\n\nvar Tournaments = __webpack_require__(179);\nvar socket = __webpack_require__(181);\n\nsocket.on('connect', function () {\n  console.log('connected');\n});\n\nsocket.on('event', function (data) {\n  console.log(data);\n});\n\nsocket.on('disconnect', function () {\n  console.log('disconnected');\n});\n\nReact.render(React.createElement(Tournaments, null), document.querySelector('[data-react-init]'));\n\n/*****************\n ** WEBPACK FOOTER\n ** ./client/index.js\n ** module id = 1\n ** module chunks = 0\n **/\n//# sourceURL=webpack:///./client/index.js?");
+	eval("'use strict';\n\n__webpack_require__(2);\nvar Rx = __webpack_require__(4);\nvar React = __webpack_require__(7);\n\nvar Tournaments = __webpack_require__(179);\nvar socket = __webpack_require__(181);\n\nsocket.on('event', function (data) {\n  console.log(data);\n});\n\nReact.render(React.createElement(Tournaments, null), document.querySelector('[data-react-init]'));\n\n/*****************\n ** WEBPACK FOOTER\n ** ./client/index.js\n ** module id = 1\n ** module chunks = 0\n **/\n//# sourceURL=webpack:///./client/index.js?");
 
 /***/ },
 /* 2 */
@@ -1623,13 +1623,13 @@
 /* 180 */
 /***/ function(module, exports, __webpack_require__) {
 
-	eval("'use strict';\n\nvar React = __webpack_require__(7);\nvar socket = __webpack_require__(181);\n\nmodule.exports = React.createClass({\n  displayName: 'exports',\n\n  createTournament: function createTournament(event) {\n    var tournamentName = React.findDOMNode(this.refs.tournamentName).value.trim();\n    socket.emit('tournament.create', { id: tournamentName, name: tournamentName });\n    debugger;\n    React.findDOMNode(this.refs.tournamentName).value = '';\n  },\n  render: function render() {\n    return React.createElement(\n      'div',\n      null,\n      React.createElement(\n        'h3',\n        null,\n        'Create tournament'\n      ),\n      React.createElement(\n        'div',\n        { className: 'row' },\n        React.createElement(\n          'div',\n          { className: 'col-xs-8' },\n          React.createElement('input', { type: 'text', className: 'form-control', ref: 'tournamentName' })\n        ),\n        React.createElement(\n          'div',\n          { className: 'col-xs-4' },\n          React.createElement(\n            'button',\n            { className: 'btn btn-success', onClick: this.createTournament },\n            'Create'\n          )\n        )\n      )\n    );\n  }\n});\n\n/*****************\n ** WEBPACK FOOTER\n ** ./client/components/tournaments/create-tournament.js\n ** module id = 180\n ** module chunks = 0\n **/\n//# sourceURL=webpack:///./client/components/tournaments/create-tournament.js?");
+	eval("'use strict';\n\nvar React = __webpack_require__(7);\nvar socket = __webpack_require__(181);\n\nmodule.exports = React.createClass({\n  displayName: 'exports',\n\n  createTournament: function createTournament(event) {\n    var tournamentName = React.findDOMNode(this.refs.tournamentName).value.trim();\n    socket.emit('tournament.create', { id: tournamentName, name: tournamentName });\n    React.findDOMNode(this.refs.tournamentName).value = '';\n  },\n  render: function render() {\n    return React.createElement(\n      'div',\n      null,\n      React.createElement(\n        'h3',\n        null,\n        'Create tournament'\n      ),\n      React.createElement(\n        'div',\n        { className: 'row' },\n        React.createElement(\n          'div',\n          { className: 'col-xs-8' },\n          React.createElement('input', { type: 'text', className: 'form-control', ref: 'tournamentName' })\n        ),\n        React.createElement(\n          'div',\n          { className: 'col-xs-4' },\n          React.createElement(\n            'button',\n            { className: 'btn btn-success', onClick: this.createTournament },\n            'Create'\n          )\n        )\n      )\n    );\n  }\n});\n\n/*****************\n ** WEBPACK FOOTER\n ** ./client/components/tournaments/create-tournament.js\n ** module id = 180\n ** module chunks = 0\n **/\n//# sourceURL=webpack:///./client/components/tournaments/create-tournament.js?");
 
 /***/ },
 /* 181 */
 /***/ function(module, exports, __webpack_require__) {
 
-	eval("'use strict';\n\nvar io = __webpack_require__(182);\nmodule.exports = io();\n\n/*****************\n ** WEBPACK FOOTER\n ** ./client/socket/index.js\n ** module id = 181\n ** module chunks = 0\n **/\n//# sourceURL=webpack:///./client/socket/index.js?");
+	eval("'use strict';\n\nvar socket = __webpack_require__(182)();\n\nsocket.on('error', function (data) {\n  console.error(data);\n});\n\nmodule.exports = socket;\n\n/*****************\n ** WEBPACK FOOTER\n ** ./client/socket/index.js\n ** module id = 181\n ** module chunks = 0\n **/\n//# sourceURL=webpack:///./client/socket/index.js?");
 
 /***/ },
 /* 182 */

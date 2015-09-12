@@ -1,4 +1,9 @@
 'use strict';
 
-var io = require('socket.io-client');
-module.exports = io();
+var socket = require('socket.io-client')();
+
+socket.on('error', function (data) {
+  console.error(data);
+})
+
+module.exports = socket;
