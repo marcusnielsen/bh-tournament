@@ -1,12 +1,12 @@
 var React = require('react/addons');
-var updateTournamentIntent = require('../../../../common/intents/tournament/update-tournament');
+var tournamentIntent = require('../../../../common/intents/tournament');
 
 module.exports = React.createClass({
   getInitialState: function() {
     return { name: '' };
   },
   updateTournament: function (event) {
-    updateTournamentIntent.updateTournament({id: this.props.id, name: this.state.name});
+    tournamentIntent.updateTournament({id: this.props.id, name: this.state.name});
     event.preventDefault();
   },
   handleChange: function (event) {

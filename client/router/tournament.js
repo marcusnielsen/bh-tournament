@@ -12,7 +12,6 @@ module.exports = function (tournamentId) {
       return t.id.toString() === tournamentId;
     })
   }).subscribe((tournamentsState) => {
-    console.log('tournamentsState: ', tournamentsState);
     React.render(
       <Tournament {...tournamentsState} />,
       document.querySelector('[data-react-init]')
