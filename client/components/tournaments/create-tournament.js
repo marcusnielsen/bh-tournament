@@ -1,16 +1,18 @@
 var React = require('react/addons');
 var socket = require('../../socket');
+var createTournamentIntent = require('../../../common/intents/create-tournament');
+var uuid = require('uuid-lib');
 
 module.exports = React.createClass({
-  getInitialState: function() {
-    return {tournamentName: ''};
+  getInitialState: function () {
+    return { tournamentName: ''};
   },
   createTournament: function (event) {
-    socket.emit('tournament.create', {name: this.state.tournamentName});
+    createTournamentIntent.createTournament({id: uuid.raw(), name: this.state.tournamentName});
     this.setState({tournamentName: ''});
   },
   handleChange: function (event) {
-    this.setState({tournamentName: event.target.value.trim()});
+    this.setState({tournamentName: event.target.value});
   },
   render: function () {
     return (

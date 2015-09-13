@@ -10,13 +10,11 @@ var subject = new Rx.ReplaySubject(1);
 var tournamentsState = [];
 
 function createTournament(tournament) {
-  debugger;
   tournamentsState = update(tournamentsState, {$push: [tournament]});
   subject.onNext(tournamentsState);
 }
 
 createTournamentIntent.subject.subscribe(function (eventArgs) {
-  debugger;
   switch(eventArgs.event) {
     case Events.TOURNAMENT_CREATE:
       createTournament(eventArgs.data);

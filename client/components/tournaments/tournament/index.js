@@ -41,7 +41,6 @@ module.exports = React.createClass({
 function observeTournamentEdit(tournamentId) {
   return Rx.Observable.create(observable => {
     socket.on('tournament.update', function (data) {
-      debugger;
       observable.onNext(data);
     });
 
