@@ -10,24 +10,28 @@ var server = require('http').createServer(app);
 var io = require('socket.io')(server);
 var Rx = require('rx');
 var Uuid = require('uuid-lib');
+var _ = require('lodash');
 
 var tournaments = [];
 
 io.on('connection', function(socket){
-  io.emit('event', 'A user connected');
-
   Rx.Observable.fromArray(tournaments).subscribe(function (tournament) {
     io.emit('tournament.create', tournament);
   });
 
-  socket.on('disconnect', function(){
-    io.emit('event', 'A user disconnected');
-  });
-
   socket.on('tournament.create', function (data) {
     var serverData = {id: Uuid.raw(), name: data.name};
+    // TODO: Find out how to handle race condition with Observable.fromArray.
     tournaments.push(serverData);
     io.emit('tournament.create', serverData);
+  });
+
+  socket.on('tournament.update', function (data) {
+    tournaments[_.findIndex(tournaments, function (t) {
+        return t.id === data.id;
+      })] = data;
+
+    io.emit('tournament.update', data);
   });
 });
 
