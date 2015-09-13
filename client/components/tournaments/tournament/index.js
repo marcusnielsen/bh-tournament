@@ -27,7 +27,7 @@ module.exports = React.createClass({
               <input type="text" className="form-control" value={this.state.name} onChange={this.handleChange} placeholder="Anna's soccer tournament"/>
               <div className="input-group-button">
                 <button className="btn btn-success text-right" type="submit">
-                  Create
+                  Edit
                 </button>
               </div>
             </div>
