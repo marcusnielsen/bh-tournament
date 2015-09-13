@@ -1,25 +1,21 @@
 var React = require('react/addons');
-var socket = require('../../../socket');
+var updateTournamentIntent = require('../../../../common/intents/tournament/update-tournament');
 
 module.exports = React.createClass({
   getInitialState: function() {
     return { name: '' };
   },
-  componentDidMount: function() {
-    observeTournamentEdit(this.props.id).subscribe(tournament => {
-      this.setState({name: tournament.name});
-    });
-  },
   editTournament: function (event) {
-    socket.emit('tournament.update', {id: this.props.id, name: this.state.name});
+    updateTournamentIntent.updateTournament({id: this.props.id, name: this.state.tournamentName});
+    this.setState({tournamentName: ''});
   },
   handleChange: function (event) {
-    this.setState({name: event.target.value.trim()});
+    this.setState({name: event.target.value});
   },
   render: function () {
     return (
       <div>
-        <h2>{this.state.name} - <small>{this.props.id}</small></h2>
+        <h2>{this.props.name} - <small>{this.props.id}</small></h2>
         <form onSubmit={this.editTournament}>
           <div className="form-group">
             <label htmlFor="tournamentName">Tournament Name</label>
@@ -37,16 +33,3 @@ module.exports = React.createClass({
     );
   }
 });
-
-function observeTournamentEdit(tournamentId) {
-  return Rx.Observable.create(observable => {
-    socket.on('tournament.update', function (data) {
-      observable.onNext(data);
-    });
-
-    return function() {
-      socket.removeAllListeners('tournament.update');
-    };
-  }).filter(data => { return data.id === tournamentId });
-}
-

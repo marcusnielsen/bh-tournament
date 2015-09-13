@@ -1,6 +1,6 @@
 var React = require('react/addons');
 var socket = require('../../socket');
-var createTournamentIntent = require('../../../common/intents/create-tournament');
+var createTournamentIntent = require('../../../common/intents/tournament/create-tournament');
 var uuid = require('uuid-lib');
 
 module.exports = React.createClass({
