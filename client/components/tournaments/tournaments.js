@@ -8,7 +8,7 @@ module.exports = React.createClass({
     return (
       <div className="list-group">
         {
-          this.props.tournaments.map(tournament => {
+          this.props.tournamentsState.map(tournament => {
             return (
               <a href={'#/tournament/' + tournament.id} className="list-group-item" key={tournament.id}>
                 <h4 className="list-group-item-heading">{tournament.name}</h4>

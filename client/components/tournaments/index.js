@@ -4,34 +4,13 @@ var Tournaments = require('./tournaments');
 var socket = require('../../socket');
 
 module.exports = React.createClass({
-  getInitialState: function() {
-    return { tournaments: []};
-  },
-  componentDidMount: function() {
-    observeTournamentCreate().subscribe(tournament => {
-      // TODO: Eeeks, do immutable!
-      this.setState({tournaments: this.state.tournaments.concat([tournament])});
-    });
-  },
   render: function () {
     return (
       <div>
        <CreateTournament />
-        <Tournaments tournaments={this.state.tournaments}/>
+        <Tournaments {... this.props.tournamentsState}/>
       </div>
     );
   }
 });
-
-function observeTournamentCreate() {
-  return Rx.Observable.create(observable => {
-    socket.on('tournament.create', function (data) {
-      observable.onNext(data);
-    });
-
-    return function() {
-      socket.removeAllListeners('tournament.create');
-    };
-  });
-}
 
