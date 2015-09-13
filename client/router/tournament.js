@@ -8,13 +8,13 @@ var TournamentsModel = require('../../common/models/tournaments');
 
 module.exports = function (tournamentId) {
   TournamentsModel.subject.map(tournaments => {
-    return _.first(tournaments, function (t) {
+    return _.find(tournaments, function (t) {
       return t.id === tournamentId;
     })
   }).subscribe((tournamentsState) => {
-    debugger;
+    console.log('tournamentsState: ', tournamentsState);
     React.render(
-      <Tournament {...tournamentsState[0]} />,
+      <Tournament {...tournamentsState} />,
       document.querySelector('[data-react-init]')
     );
   });

@@ -10,6 +10,7 @@ module.exports = React.createClass({
   createTournament: function (event) {
     createTournamentIntent.createTournament({id: uuid.raw(), name: this.state.tournamentName});
     this.setState({tournamentName: ''});
+    event.preventDefault();
   },
   handleChange: function (event) {
     this.setState({tournamentName: event.target.value});

@@ -8,6 +8,7 @@ module.exports = React.createClass({
   editTournament: function (event) {
     updateTournamentIntent.updateTournament({id: this.props.id, name: this.state.tournamentName});
     this.setState({tournamentName: ''});
+    event.preventDefault();
   },
   handleChange: function (event) {
     this.setState({name: event.target.value});
