@@ -9,6 +9,7 @@ var app = require('./app');
 var server = require('http').createServer(app);
 var io = require('socket.io')(server);
 var Rx = require('rx');
+var Uuid = require('uuid-lib');
 
 var tournaments = [];
 
@@ -24,8 +25,9 @@ io.on('connection', function(socket){
   });
 
   socket.on('tournament.create', function (data) {
-    tournaments.push(data);
-    io.emit('tournament.create', data);
+    var serverData = {id: Uuid.raw(), name: data.name};
+    tournaments.push(serverData);
+    io.emit('tournament.create', serverData);
   });
 });
 
