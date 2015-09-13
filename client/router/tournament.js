@@ -9,7 +9,7 @@ var TournamentsModel = require('../../common/models/tournaments');
 module.exports = function (tournamentId) {
   TournamentsModel.subject.map(tournaments => {
     return _.find(tournaments, function (t) {
-      return t.id === tournamentId;
+      return t.id.toString() === tournamentId;
     })
   }).subscribe((tournamentsState) => {
     console.log('tournamentsState: ', tournamentsState);
