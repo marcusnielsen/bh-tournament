@@ -5,8 +5,8 @@ module.exports = React.createClass({
   getInitialState: function() {
     return { name: '' };
   },
-  editTournament: function (event) {
-    updateTournamentIntent.updateTournament({id: this.props.id, name: this.state.tournamentName});
+  updateTournament: function (event) {
+    updateTournamentIntent.updateTournament({id: this.props.id, name: this.state.name});
     event.preventDefault();
   },
   handleChange: function (event) {
@@ -16,7 +16,7 @@ module.exports = React.createClass({
     return (
       <div>
         <h2>{this.props.name} - <small>{this.props.id}</small></h2>
-        <form onSubmit={this.editTournament}>
+        <form onSubmit={this.updateTournament}>
           <div className="form-group">
             <label htmlFor="tournamentName">Tournament Name</label>
             <div className="input-group">
