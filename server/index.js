@@ -1,7 +1,6 @@
 'use strict';
 
 var config = require('./config');
-require('./paypal')(config);
 
 // TODO: Add DB support.
 //require('./bookshelf');

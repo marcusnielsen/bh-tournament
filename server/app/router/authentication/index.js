@@ -1,21 +1,19 @@
 'use strict';
 
-var routeLoader = require('./common/loader');
-
+var routeLoader = require('../common/loader');
 var childRouteInits = [
-  require('./authentication'),
-  require('./tournaments')
+  require('./json-web-token')
 ];
 
 function init(router) {
   routeLoader(router, childRouteInits);
 
   router.get('/', function onGet(req, res) {
-    res.send('Nothing here.');
+    res.send('Nothing here either.');
   });
 
   return {
-    path: '/api',
+    path: '/authentication',
     router: router
   };
 }
