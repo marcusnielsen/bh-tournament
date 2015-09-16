@@ -1,5 +1,6 @@
 'use strict';
 
+var verify = require('./authentication/verify');
 var routeLoader = require('./common/loader');
 
 var childRouteInits = [
@@ -9,9 +10,9 @@ var childRouteInits = [
 
 function init(router) {
   routeLoader(router, childRouteInits);
-
-  router.get('/', function onGet(req, res) {
-    res.send('Nothing here.');
+  router.use(verify);
+  router.get('/', function (req, res) {
+    res.send('You gots the login secrets!');
   });
 
   return {
